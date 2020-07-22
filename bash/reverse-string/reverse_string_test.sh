@@ -54,10 +54,12 @@
 # word splitting and filename expansion:
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions
 
+# I think since * is a special character, avoid letting it operate
+
 @test "avoid globbing" {
   # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash reverse_string.sh " a *  b"
-  echo $output
+  echo "Output:" $output
 
   (( status == 0 ))
   [[ $output == "b  * a " ]]
